@@ -3,9 +3,18 @@ import { Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const startTabs = () => {
+    Navigation.setDefaultOptions({
+        bottomTabs: {
+            visible: true,
+            animate: false,
+            drawBehind: false,
+            backgroundColor: 'white',
+            tabColor: "grey"
+        }
+    });
     Promise.all([
-        Icon.getImageSource(Platform.OS === "android" ? "md-map" : "ios-map", 30, "red"),
-        Icon.getImageSource(Platform.OS === "android" ? "md-share-alt" : "ios-share", 30, "green"),
+        Icon.getImageSource(Platform.OS === "android" ? "md-map" : "ios-map", 30),
+        Icon.getImageSource(Platform.OS === "android" ? "md-share-alt" : "ios-share", 30),
         Icon.getImageSource(Platform.OS === "android" ? "md-menu" : "ios-menu", 30)
     ]).then(sources => {
         Navigation.setRoot({
@@ -13,10 +22,10 @@ const startTabs = () => {
                 sideMenu: {
                     id: "sideMenu",
                     left: {
-                      component: {
-                        id: "Drawer",
-                        name: "rntest.SideDrawerScreen"
-                      }
+                        component: {
+                            id: "Drawer",
+                            name: "rntest.SideDrawerScreen"
+                        }
                     },
                     center: {
                         bottomTabs: {
@@ -30,6 +39,8 @@ const startTabs = () => {
                                                     text: 'Tab 1',
                                                     icon: sources[0],
                                                     testID: 'FIRST_TAB_BAR_BUTTON',
+                                                    selectedIconColor: 'orange',
+                                                    selectedTextColor: 'orange'
                                                 },
                                                 topBar: {
                                                     title: {
@@ -39,7 +50,8 @@ const startTabs = () => {
                                                         {
                                                             id: 'sideDrawerToggle',
                                                             icon: sources[2],
-                                                            title: "Menu"
+                                                            title: "Menu",
+                                                            color: "orange"
                                                         }
                                                     ],
                                                 },
@@ -58,7 +70,9 @@ const startTabs = () => {
                                                     bottomTab: {
                                                         text: 'Tab 2',
                                                         icon: sources[1],
-                                                        testID: 'FIRST_TAB_BAR_BUTTON'
+                                                        testID: 'FIRST_TAB_BAR_BUTTON',
+                                                        selectedIconColor: 'orange',
+                                                        selectedTextColor: 'orange'
                                                     },
                                                     topBar: {
                                                         title: {
@@ -68,7 +82,8 @@ const startTabs = () => {
                                                             {
                                                                 id: 'sideDrawerToggle',
                                                                 icon: sources[2],
-                                                                title: "Menu"
+                                                                title: "Menu",
+                                                                color: "orange"
                                                             }
                                                         ],
                                                     }
@@ -77,11 +92,20 @@ const startTabs = () => {
                                         }
                                     ]
                                 }
-                            }]
+                            }],
+                            options: {
+                                bottomTabs: {
+                                    tabColor: 'black',
+                                    selectedTabColor: 'green',
+                                    backgroundColor: 'white',
+                                    fontSize: 12,
+                                    testID: 'BOTTOM_TABS_ELEMENT'
+                                }
+                            }
                         }
                     }
-                  },
-                
+                },
+
             }
         });
     });

@@ -1,7 +1,5 @@
 import { ADD_PLACE, DELETE_PLACE, SELECT_PLACE, DESELECT_PLACE } from '../actions/actionTypes'
 
-import placeImage from '../../assets/beautiful-place.jpg'
-
 const initialState = {
     places: [],
     selectedPlace: null
@@ -15,7 +13,8 @@ const reducer = (state = initialState, action) => {
                 places: state.places.concat({
                     key: Math.random().toString(),
                     name: action.placeName,
-                    image: placeImage
+                    image: { uri: action.image.uri },
+                    location: action.location
                   })
             };
         case DELETE_PLACE:
