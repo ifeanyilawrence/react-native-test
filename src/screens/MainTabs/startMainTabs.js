@@ -36,7 +36,7 @@ const startTabs = () => {
                                             name: 'rntest.FindPlaceScreen',
                                             options: {
                                                 bottomTab: {
-                                                    text: 'Tab 1',
+                                                    text: 'Find Place',
                                                     icon: sources[0],
                                                     testID: 'FIRST_TAB_BAR_BUTTON',
                                                     selectedIconColor: 'orange',
@@ -44,7 +44,7 @@ const startTabs = () => {
                                                 },
                                                 topBar: {
                                                     title: {
-                                                        text: 'Find Screen'
+                                                        text: 'Find Place'
                                                     },
                                                     leftButtons: [
                                                         {
@@ -68,7 +68,7 @@ const startTabs = () => {
                                                 name: 'rntest.SharePlaceScreen',
                                                 options: {
                                                     bottomTab: {
-                                                        text: 'Tab 2',
+                                                        text: 'Share Place',
                                                         icon: sources[1],
                                                         testID: 'FIRST_TAB_BAR_BUTTON',
                                                         selectedIconColor: 'orange',
@@ -76,7 +76,7 @@ const startTabs = () => {
                                                     },
                                                     topBar: {
                                                         title: {
-                                                            text: 'Share Screen'
+                                                            text: 'Share Place'
                                                         },
                                                         leftButtons: [
                                                             {

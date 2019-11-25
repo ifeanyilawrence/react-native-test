@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 
 import PlaceList from '../../components/PlaceList/PlaceList';
+import { getPlaces } from '../../store/actions/index';
 
 class FindPlaceScreen extends Component {
 
@@ -11,6 +12,7 @@ class FindPlaceScreen extends Component {
         super(props);
         this.isSideDrawerVisible = false;
         Navigation.events().registerNavigationButtonPressedListener(this.onNavigatorEvent);
+        Navigation.events().registerComponentDidAppearListener(this.onBottomTabNavigation);
     }
 
     state = {
@@ -19,7 +21,13 @@ class FindPlaceScreen extends Component {
         placesAnim: new Animated.Value(0)
     }
 
+    componentDidMount() {
+        this.props.onLoadPlaces();
+    }
+
     onNavigatorEvent = (event) => {
+        console.log("Nav event", event);
+        
         if (event && event.buttonId === "sideDrawerToggle") {
             (!this.isSideDrawerVisible) ? this.isSideDrawerVisible = true : this.isSideDrawerVisible = false;
             Navigation.mergeOptions(this.props.componentId, {
@@ -29,6 +37,13 @@ class FindPlaceScreen extends Component {
                     }
                 }
             });
+        }
+    }
+
+    onBottomTabNavigation = (event) => {
+        if (event.componentId == "Component8") {
+            
+            this.props.onLoadPlaces();
         }
     }
 
@@ -138,4 +153,10 @@ mapStateTopProps = state => {
     }
 }
 
-export default connect(mapStateTopProps)(FindPlaceScreen);
+mapDispatchToProps = dispatch => {
+    return {
+        onLoadPlaces: () => dispatch(getPlaces())
+    }
+}
+
+export default connect(mapStateTopProps, mapDispatchToProps)(FindPlaceScreen);

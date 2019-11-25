@@ -36,10 +36,13 @@ Navigation.registerComponent(`rntest.PlaceDetailScreen`, () => (props) => (
   </Provider>
 ), () => PlaceDetail);
 
-Navigation.registerComponent(`rntest.SideDrawerScreen`, () => SideDrawer);
-
+Navigation.registerComponent(`rntest.SideDrawerScreen`, () => (props) => (
+  <Provider store={store}>
+    <SideDrawer {...props} />
+  </Provider>
+),  () => SideDrawer);
 Navigation.events().registerAppLaunchedListener(() => {
-  // set the root component
+//set the root component
   Navigation.setRoot({
     root: {
       stack: {
@@ -59,3 +62,25 @@ Navigation.events().registerAppLaunchedListener(() => {
     }
   });
 });
+
+// export default () => Navigation.events().registerAppLaunchedListener(() => {
+  // set the root component
+  export const setRoot = () => Navigation.setRoot({
+    root: {
+      stack: {
+        children: [{
+            component: {
+              name: 'rntest.AuthScreen',
+              options: {
+                topBar: {
+                  title: {
+                    text: 'Login'
+                  }
+                }
+              }
+            }
+          }],
+      }
+    }
+  });
+//});
