@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ImageBackground, Dimensions, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, ImageBackground, Dimensions, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ActivityIndicator, Platform } from 'react-native';
 import { connect } from 'react-redux';
 
 import DefaultInput from '../../components/UI/DefaultInput/DefaultInput';
@@ -10,6 +10,7 @@ import ButtonWithBackground from '../../components/UI/Button/ButtonWithBackgroun
 import backgroundImage from '../../assets/background.jpg';
 import validate from '../../utility/validation';
 import { tryAuth, authAutoSignIn } from '../../store/actions/index';
+import SplashScreen from 'react-native-splash-screen';
 
 class AuthScreen extends Component {
 
@@ -66,6 +67,9 @@ class AuthScreen extends Component {
     }
 
     componentDidMount() {
+        if (Platform.OS == "android") {
+            SplashScreen.hide();
+        }
         this.props.onAutoSignIn();
     }
 

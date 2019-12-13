@@ -4,8 +4,17 @@ import com.reactnativenavigation.NavigationActivity;
 import com.imagepicker.permissions.OnImagePickerPermissionsCallback;
 import com.facebook.react.modules.core.PermissionListener;
 
+import android.os.Bundle;
+import org.devio.rn.splashscreen.SplashScreen;
+
 public class MainActivity extends NavigationActivity implements OnImagePickerPermissionsCallback {
     private PermissionListener listener;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        SplashScreen.show(this);  // here
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public void setPermissionListener(PermissionListener listener)
@@ -23,9 +32,3 @@ public class MainActivity extends NavigationActivity implements OnImagePickerPer
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
-
-// import com.facebook.react.ReactActivity;
-
-// public class MainActivity extends ReactActivity {
-  
-// }

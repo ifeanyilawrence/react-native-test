@@ -14,6 +14,7 @@ import com.facebook.soloader.SoLoader;
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 import com.airbnb.android.react.maps.MapsPackage;
 import com.imagepicker.ImagePickerPackage;
@@ -44,7 +45,8 @@ public class MainApplication extends NavigationApplication {
       new MainReactPackage(),
       new VectorIconsPackage(),
       new MapsPackage(),
-      new ImagePickerPackage()
+      new ImagePickerPackage(),
+      new SplashScreenReactPackage()
     );
   }
 
